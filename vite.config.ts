@@ -48,7 +48,7 @@ export default defineConfig(({ mode }) => {
       outDir: `dist`,
       assetsDir: 'static',
       target: 'es2015',
-      minify: 'terser',
+      minify: 'esbuild',
       rollupOptions: {
         input: {
           main: resolve(__dirname, 'index.html'),
