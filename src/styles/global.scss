@@ -1,0 +1,51 @@
+@use "sass:color";
+@use "./var.scss" as *;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: #f8f9fa;
+  color: #333;
+  line-height: 1.6;
+}
+
+#app {
+  min-width: 1060px;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 滚动条样式 */
+::-webkit-scrollbar {
+  width: 1px;
+  height: 1px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba($primary-color, 0.6);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: $primary-color;
+}
+
+/* 输入框和按钮的焦点样式 */
+input:focus,
+select:focus,
+button:focus {
+  outline: none;
+}
