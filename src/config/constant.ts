@@ -1,8 +1,8 @@
 // 单动画播放默认资源
 export const DEFAULT_ASSETS = {
   atlas:
-    'https://esotericsoftware.com/files/examples/4.2/spineboy/export/spineboy-pma.atlas',
-  skel: 'https://esotericsoftware.com/files/examples/4.2/spineboy/export/spineboy-pro.json',
+    'https://zh.esotericsoftware.com/files/examples/4.2/raptor/export/raptor-pma.atlas',
+  skel: 'https://zh.esotericsoftware.com/files/examples/4.2/raptor/export/raptor-pro.json',
 };
 
 // 多动画播放默认资源

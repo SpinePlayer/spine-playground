@@ -2,6 +2,12 @@
 
 一个基于 Vue 3 + TypeScript + Vite 的 Spine 动画播放器 playground 项目。
 
+## 相关链接
+
+- **[演示地址](https://spineplayer.github.io/spine-playground/)** - 在线体验 Spine Playground
+- **[API 文档](https://spineplayer.github.io/spine-player-docs/)** - spine-web-player API 文档
+- **[Player 仓库](https://github.com/SpinePlayer/spine-player)** - spine-web-player 代码仓库
+
 ## 功能特性
 
 - 🎬 **单动画播放** - 播放单个 Spine 动画文件
