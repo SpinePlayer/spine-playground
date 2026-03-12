@@ -31,13 +31,14 @@ import { ref, onMounted } from 'vue';
 import SpinePlayer from 'spine-web-player';
 import usePerformanceInfo from '../src/hooks/usePerformanceInfo';
 import Performance from './components/Performance.vue';
+import type { TimeKeeper } from '../src/types/common';
 
 const { search } = window.location;
 
 const { version, atlas, skel } = qs.parse(search.slice(1));
 
-const { performanceInfo, initGLPerformance, toggleStats } = usePerformanceInfo(true);
-
+const { performanceInfo, initGLPerformance, toggleStats } =
+  usePerformanceInfo(true);
 
 let spinePlayer: SpinePlayer;
 const el = ref<HTMLDivElement>();
@@ -53,7 +54,7 @@ async function initSpinePlayer() {
   }
   try {
     spinePlayer = new SpinePlayer(el.value, {
-      onUpdate: (drawCall?: number) => {
+      onUpdate: (_: TimeKeeper, drawCall?: number) => {
         performanceInfo.drawCalls = drawCall || 0;
       },
     });

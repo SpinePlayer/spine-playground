@@ -53,7 +53,7 @@ const isDisabled = computed(() => {
 });
 
 const mobileUrl = computed(() => {
-  return `${MOBILE_URL}&${qs.stringify({
+  return `${MOBILE_URL}?${qs.stringify({
     version: spineVersion.value,
     atlas: encodeURIComponent(assets.atlas),
     skel: encodeURIComponent(assets.skel),

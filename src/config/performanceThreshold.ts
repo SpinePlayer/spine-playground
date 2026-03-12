@@ -57,7 +57,7 @@ export default {
   boundWidth: {
     name: '边界宽度',
     type: 'max',
-    threshold: 750,
+    threshold: window.innerWidth * 2,
     unit: 'px',
     desc: '当前spine',
     advice: '建议尺寸小于等于屏幕二倍'
