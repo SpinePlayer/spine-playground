@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "@element-plus/icons-vue": "^2.3.1",
-    "spine-web-player": "^4.2.1",
+    "spine-web-player": "^4.2.4",
     "echarts": "^6.0.0",
     "element-plus": "^2.11.7",
     "jszip": "^3.10.1",

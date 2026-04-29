@@ -11,6 +11,7 @@
         :spineInfo="spineInfo"
         :spineConf="spineConf"
         @changeSkin="changeSkin"
+        @changeOffset="changeOffset"
         @changeTimeScale="changeTimeScale"
         @changeAnimation="onAnimationChange"
         @changeCustomScale="changeCustomScale"
@@ -130,6 +131,8 @@ const spineConf = shallowReactive({
   cleanAssetsCache: false,
   premultipliedAlpha: false,
   dynamicCalcBound: false,
+  offsetX: 0,
+  offsetY: 0,
 });
 
 // Spine播放器实例
@@ -242,6 +245,14 @@ const changeCustomScale = () => {
   } else {
     ElMessage.error('设置失败，确保数字合法');
   }
+};
+const changeOffset = () => {
+  spinePlayer?.updateConfig({
+    positionOffset: {
+      x: `${spineConf.offsetX}%`,
+      y: `${spineConf.offsetY}%`,
+    },
+  });
 };
 const changeSkin = () => {
   if (spineInfo.skinName) {

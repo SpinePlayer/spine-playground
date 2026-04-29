@@ -29,6 +29,7 @@
         @changeSkin="changeSkin"
         @changeZIndex="changeZIndex"
         @onSlotNameChange="onSlotNameChange"
+        @changeCustomBounds="changeCustomBounds"
       />
     </ContentPanel>
 
@@ -351,6 +352,14 @@ const deleteSpine = (spineId: string) => {
       selectSpine(spineList.value[0]);
     }
   }, 200);
+};
+
+/**
+ * 更新自定义坐标
+ */
+ const changeCustomBounds = () => {
+  if (!spineInfo.value.customBounds) return;
+  spineManager?.updateBound(selectedSpineId.value, spineInfo.value.customBounds);
 };
 
 const execCustomCode = (code: string) => {

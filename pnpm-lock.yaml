@@ -33,8 +33,8 @@ importers:
         specifier: ^6.14.0
         version: 6.14.0
       spine-web-player:
-        specifier: ^4.2.1
-        version: 4.2.1
+        specifier: ^4.2.4
+        version: 4.2.4
       stats-gl:
         specifier: ^3.6.0
         version: 3.6.0
@@ -910,8 +910,8 @@ packages:
     resolution: {integrity: sha512-UXWMKhLOwVKb728IUtQPXxfYU+usdybtUrK/8uGE8CQMvrhOpwvzDBwj0QhSL7MQc7vIsISBG8VQ8+IDQxpfQA==}
     engines: {node: '>=0.10.0'}
 
-  spine-web-player@4.2.1:
-    resolution: {integrity: sha512-Q89p8yOT3WLksgzxeiYWAJVKIBiWIUDeHaouIDbDyQXFvDAJayYN+GPVdo73zqyp52gjVfH6ju3p0YzomgnRwA==}
+  spine-web-player@4.2.4:
+    resolution: {integrity: sha512-MHhHktZuKn/U3k57VkKjoyLPRAEN2UBc+GIcEsAdGVhH4BORQ7xRDnoNuSwy35NbS1AOVHMWeU/z7RlZgKq3wQ==}
 
   stats-gl@3.6.0:
     resolution: {integrity: sha512-Bpi5nwvC2pls9lcI5sGqAcUqB/2kMYfsR4KoAglXFtY3YUdm7lJFg8FqS7eKKNgg3ruDMNCuwU+uRwPOwJiGnw==}
@@ -1839,7 +1839,7 @@ snapshots:
 
   source-map-js@1.2.1: {}
 
-  spine-web-player@4.2.1:
+  spine-web-player@4.2.4:
     dependencies:
       '@esotericsoftware/spine-canvas': 4.2.89
       '@esotericsoftware/spine-webgl': 4.2.89

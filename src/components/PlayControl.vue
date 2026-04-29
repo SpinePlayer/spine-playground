@@ -4,148 +4,97 @@
     <!-- 是否循环播放 -->
     <div class="control-group inline">
       <label>循环：</label>
-      <el-switch
-        v-model="spineConf.loop"
-        size="large"
-        @change="changeAnimation"
-      />
+      <el-switch v-model="spineConf.loop" size="large" @change="changeAnimation" />
     </div>
     <!-- 皮肤切换 -->
     <div class="control-group">
       <label>皮肤：</label>
-      <el-select
-        v-model="spineInfo.skinName"
-        size="large"
-        :disabled="!spineInfo.skins.length"
-        @change="changeSkin"
-      >
-        <el-option 
-          v-for="skin in spineInfo.skins" 
-          :key="skin" 
-          :label="skin" 
-          :value="skin" 
-        />
+      <el-select v-model="spineInfo.skinName" size="large" :disabled="!spineInfo.skins.length" @change="changeSkin">
+        <el-option v-for="skin in spineInfo.skins" :key="skin" :label="skin" :value="skin" />
       </el-select>
     </div>
     <!-- 动画切换 -->
     <div class="control-group">
       <label>动画：</label>
-      <el-select
-        v-model="spineInfo.animationName"
-        size="large"
-        :disabled="!spineInfo.animations.length"
-        @change="changeAnimation"
-      >
-        <el-option 
-          v-for="anim in spineInfo.animations" 
-          :key="anim" 
-          :label="anim" 
-          :value="anim" 
-        />
+      <el-select v-model="spineInfo.animationName" size="large" :disabled="!spineInfo.animations.length"
+        @change="changeAnimation">
+        <el-option v-for="anim in spineInfo.animations" :key="anim" :label="anim" :value="anim" />
       </el-select>
     </div>
     <!-- 动画过渡时间 -->
     <div class="control-group">
       <label>动画过渡时间：</label>
-      <input
-        type="number"
-        v-model="spineConf.mixDuration"
-        placeholder="animation mix duration"
-      />
+      <el-input size="large" type="number" v-model="spineConf.mixDuration" placeholder="animation mix duration" />
     </div>
     <!-- 动画层级 -->
     <div v-if="multi" class="control-group">
       <label>动画显示层级：</label>
-      <input
-        v-model="spineConf.zIndex"
-        type="number"
-        placeholder="zIndex"
-        @change="changeZIndex"
-      />
+      <el-input v-model="spineConf.zIndex" size="large" type="number" placeholder="zIndex" @change="changeZIndex" />
+    </div>
+    <!-- 偏移 -->
+    <div v-if="!multi" class="control-group">
+      <label>动画位置偏移：</label>
+      <div class="events-list custom-bounds">
+        <el-descriptions class="margin-top custom-bounds-descriptions" :column="1" size="small" border>
+          <el-descriptions-item label="offsetX" label-align="center">
+            <el-input v-model="spineConf.offsetX" type="number" placeholder="offsetX" @change="changeOffset">
+              <template #append>%</template>
+            </el-input>
+          </el-descriptions-item>
+          <el-descriptions-item label="offsetY" label-align="center">
+            <el-input v-model="spineConf.offsetY" type="number" placeholder="offsetY" @change="changeOffset">
+              <template #append>%</template>
+            </el-input>
+          </el-descriptions-item>
+        </el-descriptions>
+      </div>
     </div>
     <!-- 缩放 -->
     <div v-if="!multi" class="control-group">
       <label>动画大小缩放：</label>
-      <el-slider
-        v-model="spineConf.customScale"
-        :min="0.1"
-        :max="1.5"
-        :step="0.1"
-        show-input
-        @change="changeCustomScale"
-      />
+      <el-slider v-model="spineConf.customScale" :min="0.1" :max="1.5" :step="0.1" show-input
+        @change="changeCustomScale" />
     </div>
     <!-- 倍速 -->
     <div class="control-group">
       <label>动画播放倍速：</label>
-      <el-slider
-        v-model="spineConf.timeScale"
-        :min="0.1"
-        :max="5"
-        :step="0.2"
-        show-input
-        @change="changeTimeScale"
-      />
+      <el-slider v-model="spineConf.timeScale" :min="0.1" :max="5" :step="0.2" show-input @change="changeTimeScale" />
     </div>
   </div>
   <!-- 动画标注 -->
   <div class="control-section">
     <div class="control-group">
       <label>插槽位置标注：</label>
-      <el-select
-        v-model="spineInfo.slotName"
-        size="large"
-        :clearable="true"
-        :value-on-clear="''"
-        placeholder="请选择插槽位置标注"
-        :disabled="!spineInfo.soltNames.length"
-        @change="onSlotNameChange"
-      >
-        <el-option
-          v-for="slotName in spineInfo.soltNames" 
-          :key="slotName" 
-          :label="slotName" 
-          :value="slotName"
-        />
+      <el-select v-model="spineInfo.slotName" size="large" :clearable="true" :value-on-clear="''"
+        placeholder="请选择插槽位置标注" :disabled="!spineInfo.soltNames.length" @change="onSlotNameChange">
+        <el-option v-for="slotName in spineInfo.soltNames" :key="slotName" :label="slotName" :value="slotName" />
       </el-select>
     </div>
     <div class="control-group inline">
       <label>插槽标注颜色：</label>
-      <el-color-picker 
-        v-model="currentSlot.color" 
-        :clearable="false" 
-        size="large" 
-        :predefine="predefineColors" 
-      />
+      <el-color-picker v-model="currentSlot.color" :clearable="false" size="large" :predefine="predefineColors" />
     </div>
   </div>
   <!-- 动画信息展示 -->
   <div class="info-section">
     <div v-if="multi" class="events-section">
       <h5 class="sub-title">自定义坐标</h5>
-      <div class="events-list">
-        <el-descriptions
-          v-if="spineInfo.customBounds"
-          class="margin-top"
-          :column="2"
-          size="small"
-          border
-        >
-          <el-descriptions-item>
-            <template #label> x </template>
-            {{ spineInfo.customBounds.x }}
+      <div class="events-list custom-bounds">
+        <el-descriptions v-if="spineInfo.customBounds" class="margin-top custom-bounds-descriptions" :column="1"
+          size="small" border>
+          <el-descriptions-item label="x" label-align="center">
+            <el-input v-model="spineInfo.customBounds.x" type="number" placeholder="x" @change="changeCustomBounds" />
           </el-descriptions-item>
-          <el-descriptions-item>
-            <template #label> width </template>
-            {{ spineInfo.customBounds.width }}
+          <el-descriptions-item label="y" label-align="center">
+            <el-input v-model="spineInfo.customBounds.y" type="number" placeholder="y" @change="changeCustomBounds" />
           </el-descriptions-item>
-          <el-descriptions-item>
-            <template #label> y </template>
-            {{ spineInfo.customBounds.y }}
+          <el-descriptions-item label="width" label-align="center">
+            <el-input v-model="spineInfo.customBounds.width" type="number" placeholder="width"
+              @change="changeCustomBounds" />
           </el-descriptions-item>
-          <el-descriptions-item>
-            <template #label> height </template>
-            {{ spineInfo.customBounds.height }}
+          <el-descriptions-item label="height" label-align="center">
+            <el-input v-model="spineInfo.customBounds.height" type="number" placeholder="height"
+              @change="changeCustomBounds" />
           </el-descriptions-item>
         </el-descriptions>
         <div v-else class="no-events">暂无自定义坐标信息</div>
@@ -154,11 +103,7 @@
     <div class="events-section">
       <h5 class="sub-title">事件信息</h5>
       <div class="events-list">
-        <div
-          v-for="event in spineInfo.events"
-          :key="event.id"
-          class="event-item"
-        >
+        <div v-for="event in spineInfo.events" :key="event.id" class="event-item">
           <span class="event-name">{{ event.name }}</span>
           <!-- <span class="event-time">value: {{ event.intValue }}</span> -->
         </div>
@@ -201,6 +146,8 @@ const emit = defineEmits([
   'changeCustomScale',
   'changeZIndex',
   'onSlotNameChange',
+  'changeCustomBounds',
+  'changeOffset',
 ]);
 
 const changeSkin = () => {
@@ -221,7 +168,32 @@ const changeZIndex = () => {
 const onSlotNameChange = (newVal: string) => {
   emit('onSlotNameChange', newVal);
 };
+
+const changeCustomBounds = () => {
+  emit('changeCustomBounds');
+};
+
+const changeOffset = () => {
+  emit('changeOffset');
+};
 </script>
+
+<style lang="scss">
+.custom-bounds-descriptions {
+  .el-descriptions__body {
+    .el-descriptions__table.is-bordered {
+      .el-descriptions__cell {
+        border: none;
+      }
+      tr {
+        &:not(:last-child) {
+          border-bottom: var(--el-descriptions-table-border);
+        }
+      }
+    }
+  }
+}
+</style>
 
 <style lang="scss" scoped>
 .events-section {
@@ -234,6 +206,10 @@ const onSlotNameChange = (newVal: string) => {
   border: 1px solid $border-color;
   border-radius: 6px;
   background: $white;
+
+  &.custom-bounds {
+    max-height: fit-content;
+  }
 }
 
 .event-item {

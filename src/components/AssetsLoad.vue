@@ -4,16 +4,18 @@
       <!-- 远程文件加载 -->
       <div class="control-group">
         <label>Atlas文件URL：</label>
-        <input
+        <el-input
           type="text"
+          size="large"
           v-model="remoteURL.atlasUrl"
           placeholder="输入.atlas文件的HTTP链接"
         />
       </div>
       <div class="control-group">
         <label>Skeleton文件URL：</label>
-        <input
+        <el-input
           type="text"
+          size="large"
           v-model="remoteURL.skeletonUrl"
           placeholder="输入.json/.skel文件的HTTP链接"
         />
@@ -76,15 +78,13 @@
   <!-- 滤镜 -->
   <div class="control-group">
     <label>滤镜选择：</label>
-    <select v-model="options.filterType">
-      <option
+    <el-select v-model="options.filterType" size="large">
+      <el-option
         v-for="filter in filters"
         :key="filter.value"
         :value="filter.value"
-      >
-        {{ filter.name }}
-      </option>
-    </select>
+      />
+    </el-select>
   </div>
   <!-- 滤镜参数 -->
   <div v-if="options.filterType === 'custom'" class="control-group inline">
@@ -400,8 +400,8 @@ function loadRemoteSpine() {
 
 <style>
 .demo-form-inline .el-input__wrapper {
-  padding: 0;
-  box-shadow: none;
+  margin-left: 8px;
+  margin-bottom: 0.5rem;
 }
 .demo-form-inline .el-form-item {
   margin-right: 8px;
@@ -411,7 +411,7 @@ function loadRemoteSpine() {
   padding-right: 2px;
 }
 .demo-form-inline .el-input {
-  --el-input-width: 62px;
+  --el-input-width: 66px;
   --el-input-height: 30px;
 }
 </style>

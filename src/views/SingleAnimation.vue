@@ -15,6 +15,7 @@
         @changeSkin="changeSkin"
         @changeCustomScale="changeCustomScale"
         @onSlotNameChange="onSlotNameChange"
+        @changeOffset="changeOffset"
       />
     </ContentPanel>
 
@@ -113,6 +114,8 @@ const spineConf = shallowReactive({
   mixDuration: 0.2,
   timeScale: 1,
   customScale: 1,
+  offsetX: 0,
+  offsetY: 0,
 });
 
 // Spine播放器实例
@@ -239,6 +242,14 @@ const changeCustomScale = () => {
   } else {
     ElMessage.error('设置失败，确保数字合法');
   }
+};
+const changeOffset = () => {
+  spinePlayer?.updateConfig({
+    positionOffset: {
+      x: `${spineConf.offsetX}%`,
+      y: `${spineConf.offsetY}%`,
+    },
+  });
 };
 const changeAnimation = () => {
   if (spineInfo.animationName && spinePlayer) {
